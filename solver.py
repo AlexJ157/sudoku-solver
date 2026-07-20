@@ -26,6 +26,13 @@ def print_board(board):
         print(formatted_row)
         if (row_index + 1) % 3 == 0 and row_index != 8:
             print("---------")
+
+def find_empty(board):
+    for row_index, row in enumerate(board):
+        for value_index, value in enumerate(row):
+            if value == 0:
+                return (row_index, value_index)
+    return None
     
         
         
