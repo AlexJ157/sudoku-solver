@@ -1,3 +1,5 @@
+import math
+
 board = [
     [5, 3, 0, 0, 7, 0, 0, 0, 0],
     [6, 0, 0, 1, 9, 5, 0, 0, 0],
@@ -34,7 +36,28 @@ def find_empty(board):
                 return (row_index, value_index)
     return None
     
+def is_valid(board, number, position):
+    row, column = position
+    for value in board[row]:
+        if value == number:
+            return False
         
+    column_list = []
+    for i in range(9):
+        column_list.append(board[i][column])
+
+    for value in column_list:
+        if value == number:
+            return False
         
+    start_row = math.floor(((row + 1) / 3)) * 3
+    start_column = math.floor(((column + 1) / 3)) * 3
+
+    for i in range(start_row, start_row + 4):
+        for j in range(start_column, start_column + 4):
+            if board[i][j] == number:
+                return False
+    return True
 
 print_board(board)
+
